@@ -25,7 +25,6 @@ class Sudoku{
 			bool checkcell();
 			bool isAns();
 			void printout(bool isAns);
-			void transform();
 			bool checkINrow(int place,int n);
 			bool checkINcol(int place,int n);
 			bool checkINcell(int place,int n);

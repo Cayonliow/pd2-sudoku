@@ -3,7 +3,7 @@
 int main()
 {
 	Sudoku ss;
-	ss.giveGuestion();
+	ss.giveQuestion();
 	return 0;
 }
 
