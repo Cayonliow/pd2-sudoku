@@ -203,7 +203,7 @@ void Sudoku::flip(int n)	//reflect
 	 	
 			for(int i=0;i<4;++i) 
 			{
-	 			for (int j=0;j<9;++u) 
+	 			for (int j=0;j<9;++j) 
 				{	
 					swap(sudoku[i+j*9],sudoku[8-i+j*9]); 
 				}
