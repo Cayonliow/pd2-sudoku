@@ -18,16 +18,16 @@ void Sudoku::giveQuestion()	//give question
 		srand(time(NULL));
 		random[i]=rand()%81;
 		count++;
-		for(int j=0;j<i;j++)
-		{
-			if(random[i]==random[j])
-			{
-				random[i]=rand()%81;
-				i--;
-				count--;
-				break;
-			}
-		}
+//		for(int j=0;j<i;j++)
+//		{
+//			if(random[i]==random[j])
+//			{
+//				random[i]=rand()%81;
+//				i--;
+//				count--;
+//				break;
+//			}
+//		}
 		
 	}
 	
@@ -82,7 +82,7 @@ void Sudoku::printout(bool isAns)	//determine whether there are solution
 {
 	if(isAns==false)
 	{
-		for(int i=0;0<81;i++)
+		for(int i=0;i<81;i++)
 		{
 			printf("%d%c",sudoku[i],(i+1)%9==0?'\n':' ');
 		}
