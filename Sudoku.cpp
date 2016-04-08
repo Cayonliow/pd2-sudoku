@@ -18,16 +18,16 @@ void Sudoku::giveQuestion()	//give question
 		srand(time(NULL));
 		random[i]=rand()%81;
 		count++;
-//		for(int j=0;j<i;j++)
-//		{
-//			if(random[i]==random[j])
-//			{
-//				random[i]=rand()%81;
-//				i--;
-//				count--;
-//				break;
-//			}
-//		}
+		//for(int j=0;j<i;j++)
+	//	{
+		//	if(random[i]==random[j])
+	//		{
+	//			random[i]=rand()%81;
+	//			i--;
+	//			count--;
+	//			break;
+	//		}
+	//	}
 		
 	}
 	
@@ -45,7 +45,7 @@ void Sudoku::giveQuestion()	//give question
 
 void Sudoku::readIn()	//read data
 {
-	for(int i=0;i<81;i++)
+	for(int i=0;i<81;++i)
 	{
 		scanf("%d",&sudoku[i]);
 	}	
@@ -53,7 +53,7 @@ void Sudoku::readIn()	//read data
 	
 void Sudoku::changeNum(int a,int b)	//exchange number
 {
-	for(int i=0;i<81;i++)
+	for(int i=0;i<81;++i)
 	{
 		if(sudoku[i]==a)
 		{
@@ -82,7 +82,7 @@ void Sudoku::printout(bool isAns)	//determine whether there are solution
 {
 	if(isAns==false)
 	{
-		for(int i=0;i<81;i++)
+		for(int i=0;i<81;++i)
 		{
 			printf("%d%c",sudoku[i],(i+1)%9==0?'\n':' ');
 		}
@@ -90,7 +90,7 @@ void Sudoku::printout(bool isAns)	//determine whether there are solution
 	
 	else
 	{
-		for(int i=0;i<81;i++)
+		for(int i=0;i<81;++i)
 		{
 			printf("%d%c",print[i],(i+1)%9==0?'\n':' ');		
 		}	
@@ -110,7 +110,7 @@ void Sudoku::changeRow(int a,int b)	//exchange row
 		return;
 	}
 	
-	for(int i=0;i<27;i++)
+	for(int i=0;i<27;++i)
 	{
 		temp=sudoku[i+(3*a)*9];
 		sudoku[i+(3*a)*9]=sudoku[i+(3*b)*9];
@@ -128,7 +128,7 @@ void Sudoku::changeCol(int a,int b)	//exchange column
 		return;
 	}
 	
-	for(int j=0;j<3;j++)
+	for(int j=0;j<3;++j)
 	{
 		for(int i=0;i<=72;i=i+9)
 		{
@@ -141,7 +141,7 @@ void Sudoku::changeCol(int a,int b)	//exchange column
 
 void Sudoku::rotate(int n)	//rotate 90"
 { 
-	for(int i=0;i<81;i++)
+	for(int i=0;i<81;++i)
 	{
 		tt[i]=0;
 	}
@@ -155,7 +155,7 @@ void Sudoku::rotate(int n)	//rotate 90"
 	{
 		h=72;
 
-		for(int i=0;i<81;i++)
+		for(int i=0;i<81;++i)
 		{
 			tt[i]=sudoku[h];
 			h=h-9;
@@ -168,7 +168,7 @@ void Sudoku::rotate(int n)	//rotate 90"
 	
 	if(n%4==2)
 	{
-		for(int i=0;i<81;i++)
+		for(int i=0;i<81;++i)
 		{
 			tt[i]=sudoku[80-i];
 		}
@@ -177,7 +177,7 @@ void Sudoku::rotate(int n)	//rotate 90"
 	if(n%4==3)
 	{
 		int h=8;
-		for(int i=0;i<81;i++)
+		for(int i=0;i<81;++i)
 		{
 			tt[i]=sudoku[h];
 			h=h+9;
@@ -189,7 +189,7 @@ void Sudoku::rotate(int n)	//rotate 90"
 		}
 	}
 		
-	for(int i=0;i<81;i++)
+	for(int i=0;i<81;++i)
 	{
 		sudoku[i]=tt[i];
 	}
@@ -213,7 +213,7 @@ void Sudoku::flip(int n)	//reflect
 		
 		case 1: 
 
-			for(int i = 0; i < 4; ++i) 
+			for(int i=0;i<4;++i) 
 			{
 				for(int j=0;j<9;++j)
 				{	
@@ -230,12 +230,12 @@ void Sudoku::flip(int n)	//reflect
 
 bool Sudoku::checkrow()	//
 {
- 	for(int row=0;row<9;row++)
+ 	for(int row=0;row<9;++row)
 	{	
 		int check[10]={0};
  		check[0]=0;
 	
-		for(int i=1;i<10;i++)
+		for(int i=1;i<10;++i)
 		{
 			if(sudoku[row*9+(i-1)]!=0)
 			{
@@ -243,7 +243,7 @@ bool Sudoku::checkrow()	//
 			}
 		}
 			
-		for(int i=1;i<10;i++)
+		for(int i=1;i<10;++i)
 		{
 			if(check[i]>1)
 			{
@@ -258,7 +258,7 @@ bool Sudoku::checkrow()	//
 	 
 bool Sudoku::checkcol()
 {
-	for(int col=0;col<9;col++)
+	for(int col=0;col<9;++col)
 	{
 		int check[10]={0};
  		check[0]=0; 
@@ -271,7 +271,7 @@ bool Sudoku::checkcol()
 			} 	
 		}
 			
-		for(int i=1;i<10;i++)
+		for(int i=1;i<10;++i)
 		{
 			if(check[i]>1)
 			{
@@ -295,7 +295,7 @@ bool Sudoku::checkcell()
 		{
 			i=i+18;
 		}
-		for(int j=i;j<i+3;j++)
+		for(int j=i;j<i+3;++j)
 		{
 			if(sudoku[j]!=0)
 			{
@@ -313,7 +313,7 @@ bool Sudoku::checkcell()
 			}
 		}
 	
-		for(int i=1;i<10;i++)
+		for(int i=1;i<10;++i)
 		{
 			if(check[i]>1)
 			{
@@ -343,7 +343,7 @@ bool Sudoku::isAns()
 bool Sudoku::checkINrow(int place,int n)
 {
 	int gg=(place/9)*9;
-	for(int i=0;i<9;i++)
+	for(int i=0;i<9;++i)
 	{
 		if(gg+i!=place)
 		{
@@ -393,7 +393,7 @@ bool Sudoku::checkINcell(int place,int n)
 {	
 	if(place>=0&&place<=2||place>=9&&place<=11||place>=18&&place<=20)
 	{
-		for(int i=0;i<3;i++)
+		for(int i=0;i<3;++i)
 		{
 			if(sudoku[0+i]==n)
 			{
@@ -420,7 +420,7 @@ bool Sudoku::checkINcell(int place,int n)
 	
 	if(place>=3&&place<=5||place>=12&&place<=14||place>=21&&place<=23)
 	{
-		for(int i=0;i<3;i++)
+		for(int i=0;i<3;++i)
 		{
 			if(sudoku[3+i]==n&&(3+i)!=place)
 			{
@@ -441,7 +441,7 @@ bool Sudoku::checkINcell(int place,int n)
 	
 	if(place>=6&&place<=8||place>=15&&place<=17||place>=24&&place<=26)
 	{
-		for(int i=0;i<3;i++)
+		for(int i=0;i<3;++i)
 		{
 			if(sudoku[6+i]==n&&(6+i)!=place)
 			{
@@ -462,7 +462,7 @@ bool Sudoku::checkINcell(int place,int n)
 	
 	if(place>=27&&place<=29||place>=36&&place<=38||place>=45&&place<=47)
 	{
-		for(int i=0;i<3;i++)
+		for(int i=0;i<3;++i)
 		{
 			if(sudoku[27+i]==n&&(27+i)!=place)
 			{
@@ -483,7 +483,7 @@ bool Sudoku::checkINcell(int place,int n)
 	
 	if(place>=30&&place<=32||place>=39&&place<=41||place>=48&&place<=50)
 	{
-		for(int i=0;i<3;i++)
+		for(int i=0;i<3;++i)
 		{
 			if(sudoku[30+i]==n&&(30+i)!=place)
 			{
@@ -504,7 +504,7 @@ bool Sudoku::checkINcell(int place,int n)
 	
 	if(place>=33&&place<=35||place>=42&&place<=44||place>=51&&place<=53)
 	{
-		for(int i=0;i<3;i++)
+		for(int i=0;i<3;++i)
 		{
 			if(sudoku[33+i]==n&&(33+i)!=place)
 			{
@@ -525,7 +525,7 @@ bool Sudoku::checkINcell(int place,int n)
 	
 	if(place>=54&&place<=56||place>=63&&place<=65||place>=72&&place<=74)
 	{
-		for(int i=0;i<3;i++)
+		for(int i=0;i<3;++i)
 		{
 			if(sudoku[54+i]==n&&(54+i)!=place)
 			{
@@ -546,7 +546,7 @@ bool Sudoku::checkINcell(int place,int n)
 	
 	if(place>=57&&place<=59||place>=66&&place<=68||place>=75&&place<=77)
 	{
-		for(int i=0;i<3;i++)
+		for(int i=0;i<3;++i)
 		{
 			if(sudoku[57+i]==n&&(57+i)!=place)
 			{
@@ -567,7 +567,7 @@ bool Sudoku::checkINcell(int place,int n)
 	
 	if(place>=60&&place<=62||place>=69&&place<=71||place>=78&&place<=80)
 	{
-		for(int i=0;i<3;i++)
+		for(int i=0;i<3;++i)
 		{
 			if(sudoku[60+i]==n&&(60+i)!=place)
 			{
@@ -591,7 +591,7 @@ bool Sudoku::checkINcell(int place,int n)
 
 void Sudoku::BackTrack(int place)
 {
-	for(int i=1;i<10;i++)
+	for(int i=1;i<10;++i)
 	{
 		if(checkINrow(place,i)==true&&checkINcol(place,i)==true&&checkINcell(place,i)==true)
 		{
@@ -600,13 +600,13 @@ void Sudoku::BackTrack(int place)
 			{
 				solution++;
 				if(solution>=2)return;
-				for(int j=0;j<81;j++)
+				for(int j=0;j<81;++j)
 				{
 					print[j]=sudoku[j];
 				}
 			}
 
-			for(int h=place+1;h<81;h++)
+			for(int h=place+1;h<81;++h)
 			{
 				if(sudoku[h]==0)
 				{
@@ -640,7 +640,7 @@ void Sudoku::solve()
 		}
 	}
 	got=0;
-	for(int i=0;i<81;i++)
+	for(int i=0;i<81;++i)
 	{
 		if(sudoku[i]!=0)
 		{
@@ -648,7 +648,7 @@ void Sudoku::solve()
 		
 			if(got==81)
 			{
-				for(int j=0;j<81;j++)
+				for(int j=0;j<81;++j)
 				{
 					print[j]=sudoku[j];
 				}
